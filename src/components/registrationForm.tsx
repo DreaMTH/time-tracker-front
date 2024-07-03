@@ -34,8 +34,11 @@ export const ModalRegistrationForm = ({ isOpen, setOpenState }: Props) => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [hasError, setError] = useState<boolean>(false);
-  const handleFormSubmit = () => {
-    if (login === '' || password === '') {
+  const handleFormSubmit = async () => {
+    if (login.length < 6 || password.length < 8) {
+      return setError(true);
+    }
+    if (password !== confirmPassword) {
       return setError(true);
     }
     console.log({ login, password });

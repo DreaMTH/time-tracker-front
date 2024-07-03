@@ -7,7 +7,6 @@ import {
 import { Dispatch, SetStateAction, useState } from 'react';
 import { InfoOutlined } from "@mui/icons-material";
 
-
 const style = {
   position: 'absolute',
   top: '50%',
@@ -32,8 +31,8 @@ export const ModalLoginForm = ({ isOpen, setOpenState }: Props) => {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [hasError, setError] = useState<boolean>(false);
-  const handleFormSubmit = () => {
-    if (login === '' || password === '') {
+  const handleFormSubmit = async () => {
+    if (login.length < 6 || password.length < 8) {
       return setError(true);
     }
     console.log({ login, password });

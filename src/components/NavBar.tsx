@@ -31,7 +31,8 @@ export const NavBar = () => {
                         onClick={ () => setLogged(!isLogged) }>
               <MenuIcon/>
             </IconButton>
-            <Typography variant={ 'h4' } sx={ { flexGrow: 1 } }>...</Typography>
+            <Typography variant={ 'h4' }
+                        sx={ { flexGrow: 1 } }>...</Typography>
             { !isLogged &&
                 <Box sx={ { gap: 2 } } display={ 'flex' }>
                     <Button size={ 'medium' } variant={ 'contained' }
@@ -49,8 +50,9 @@ export const NavBar = () => {
             { isLogged &&
                 <Box>
                     <Button size={ 'medium' } variant={ 'contained' }
-                            color={ 'primary' }>Log Out&nbsp;<LoginOutlinedIcon
-                        fontSize={ 'small' }/></Button>
+                            color={ 'primary' }>Log Out&nbsp;
+                        <LoginOutlinedIcon
+                            fontSize={ 'small' }/></Button>
                 </Box>
             }
           </Toolbar>
