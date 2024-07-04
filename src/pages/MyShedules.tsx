@@ -1,8 +1,22 @@
 import { Box, Button, Paper, TextField } from "@mui/material";
 import { Add } from "@mui/icons-material";
-import { ScheduleItem } from "../components/scheduleItem.tsx";
+import { ScheduleList } from "../components/scheduleList.tsx";
+import { KeyboardEvent, useState } from "react";
+import { ScheduleRecord } from "../interfaces/ScheduleInterfaces.ts";
 
 export const MySchedules = () => {
+  const [arrayItem, setArrayItem] = useState<string>('');
+  const [scheduleArray, setArray] = useState<ScheduleRecord[]>([]);
+  const handleNewRecord = () => setArray(
+    prevState => [...prevState, {
+      taskName: arrayItem,
+      isResultFixed: false
+    }]);
+  const enterKeyPress = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      return handleNewRecord();
+    }
+  }
   return (
     <>
       <Paper sx={ {
@@ -15,13 +29,16 @@ export const MySchedules = () => {
         justifyContent: 'center',
         alignItems: 'center'
       } } elevation={ 5 }>
-        <ScheduleItem task={'123'} abandonValue={true} isResultFixed={true}/>
+        <ScheduleList data={ scheduleArray }/>
         <Box padding={ 3 }>
           <Box>
             <TextField sx={ { input: { color: 'primary.light' } } }
                        variant={ 'filled' }
-                       label={ '' }/>
-            <Button size={ 'large' } sx={ {
+                       value={ arrayItem }
+                       label={ '' }
+                       onChange={ (e) => setArrayItem(e.target.value) }
+                       onKeyDown={ enterKeyPress }/>
+            <Button size={ 'large' } onClick={ handleNewRecord } sx={ {
               display: 'inline-block',
               margin: 'auto',
               maxHeight: 60,

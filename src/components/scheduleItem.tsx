@@ -42,11 +42,12 @@ export const ScheduleItem = ({
         display: 'flex',
         justifyContent: 'center',
         gap: 2,
+        flexWrap: 'wrap',
         alignItems: 'center',
         maxWidth: 'fit-content',
         margin: 'auto'
       } }>
-        <Box margin={ 0 } padding={ 0 }>
+        <Box margin={ 0 } padding={ 0 } flexGrow={1} flexWrap={'wrap'}>
           <Checkbox
             size={ 'large' }
             color={ 'primary' }
@@ -66,7 +67,7 @@ export const ScheduleItem = ({
             checkedIcon={ <RemoveCircleOutlineOutlinedIcon/> }
           />
         </Box>
-        <Box>
+        <Box flexGrow={1} flexWrap={'wrap'}>
           <Typography variant={ 'h4' }>
             { task }
           </Typography>
