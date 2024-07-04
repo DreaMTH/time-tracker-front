@@ -4,7 +4,7 @@ import { ScheduleList } from "../components/scheduleList.tsx";
 import { KeyboardEvent, useState } from "react";
 import { ScheduleRecord } from "../interfaces/ScheduleInterfaces.ts";
 
-export const MySchedules = () => {
+export const CreateSchedule = () => {
   const [arrayItem, setArrayItem] = useState<string>('');
   const [scheduleArray, setArray] = useState<ScheduleRecord[]>([]);
   const handleNewRecord = () => setArray(

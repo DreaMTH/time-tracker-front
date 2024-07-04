@@ -8,7 +8,7 @@ import { NavBar } from "./components/NavBar.tsx";
 import { Provider } from 'react-redux';
 import { store } from "./store/store.ts";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { MySchedules } from "./pages/MyShedules.tsx";
+import { CreateSchedule } from "./pages/CreateSchedule.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <NavBar/>
           <Routes>
             <Route path={ '/' } Component={ App }/>
-            <Route path={ '/schedules' } Component={ MySchedules }/>
+            <Route path={ '/schedules/new' } Component={ CreateSchedule }/>
           </Routes>
         </ThemeProvider>
       </Provider>
