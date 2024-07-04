@@ -3,15 +3,24 @@ import { Add } from "@mui/icons-material";
 import { ScheduleList } from "../components/scheduleList.tsx";
 import { KeyboardEvent, useState } from "react";
 import { ScheduleRecord } from "../interfaces/ScheduleInterfaces.ts";
+import { PostScheduleModal } from "../components/PostScheduleModal.tsx";
 
 export const CreateSchedule = () => {
   const [arrayItem, setArrayItem] = useState<string>('');
   const [scheduleArray, setArray] = useState<ScheduleRecord[]>([]);
-  const handleNewRecord = () => setArray(
-    prevState => [...prevState, {
-      taskName: arrayItem,
-      isResultFixed: false
-    }]);
+  const [errorRecord, setErrorRecord] = useState<boolean>(false);
+  const [postModalOpen, setPostModalState] = useState<boolean>(false);
+  const handleNewRecord = () => {
+    if (arrayItem.length <= 0) {
+      return setErrorRecord(true);
+    }
+    setArray(
+      prevState => [...prevState, {
+        taskName: arrayItem,
+        isResultFixed: false
+      }]);
+    setErrorRecord(false);
+  }
   const enterKeyPress = (e: KeyboardEvent) => {
     if (e.key === 'Enter') {
       return handleNewRecord();
@@ -32,7 +41,9 @@ export const CreateSchedule = () => {
         <ScheduleList data={ scheduleArray }/>
         <Box padding={ 3 }>
           <Box>
-            <TextField sx={ { input: { color: 'primary.light' } } }
+            <TextField helperText={ errorRecord && 'Task name cannot be empty' }
+                       error={ errorRecord }
+                       sx={ { input: { color: 'primary.light' } } }
                        variant={ 'filled' }
                        value={ arrayItem }
                        label={ '' }
@@ -47,7 +58,14 @@ export const CreateSchedule = () => {
             } }><Add/></Button>
           </Box>
         </Box>
+        <Button size={ 'large' }
+                variant={ 'contained' }
+                sx={ { margin: 'auto', width: '100%', maxWidth: 200 } }
+                onClick={ () => setPostModalState(true) }>Create
+          schedule</Button>
       </Paper>
+      <PostScheduleModal isOpen={ postModalOpen }
+                         setOpenState={ setPostModalState } data={scheduleArray}/>
     </>
   );
 }
