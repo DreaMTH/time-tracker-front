@@ -4,3 +4,10 @@ export declare interface ScheduleRecord {
   isTaskAbandon?: boolean,
   isResultFixed: boolean,
 }
+
+export declare interface Schedule {
+  scheduleName: string,
+  scheduleDescription: string,
+  scheduleRecords: ScheduleRecord[],
+  scheduleEnded: boolean,
+}

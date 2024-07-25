@@ -17,6 +17,8 @@ export const CreateSchedule = () => {
     setArray(
       prevState => [...prevState, {
         taskName: arrayItem,
+        isTaskAbandon: false,
+        isTaskDone: false,
         isResultFixed: false
       }]);
     setErrorRecord(false);
@@ -65,7 +67,8 @@ export const CreateSchedule = () => {
           schedule</Button>
       </Paper>
       <PostScheduleModal isOpen={ postModalOpen }
-                         setOpenState={ setPostModalState } data={scheduleArray}/>
+                         setOpenState={ setPostModalState }
+                         data={ scheduleArray }/>
     </>
   );
 }

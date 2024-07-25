@@ -18,10 +18,11 @@ export const ScheduleList = ({ data }: Props) => {
   const [hoverEffect, setHoverEffect] = useState<HoverTransform>(
     { shadow: 10, transformX: 1, transformY: 1 });
   const listItems = data.map((item) => (
-    <ListItem key={ item.taskName }><ScheduleItem task={ item.taskName }
-                                                  doneValue={ item.isTaskDone }
-                                                  abandonValue={ item.isTaskAbandon }
-                                                  isResultFixed={ item.isResultFixed }/></ListItem>
+    <ListItem key={ item.taskName }><ScheduleItem
+      task={ item.taskName }
+      doneValue={ item.isTaskDone }
+      abandonValue={ item.isTaskAbandon }
+      isResultFixed={ item.isResultFixed }/></ListItem>
   ))
   return (
     <>

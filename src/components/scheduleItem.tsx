@@ -19,7 +19,7 @@ export const ScheduleItem = ({
                                isResultFixed
                              }: Props) => {
   const [taskDoneCheck, setTaskDoneCheck] = useState<boolean>(
-    doneValue || false);
+    doneValue);
   const [taskAbandonCheck, setTaskAbandonCheck] = useState<boolean>(
     abandonValue);
   const handleDoneChange = (event: ChangeEvent<HTMLInputElement>) => {

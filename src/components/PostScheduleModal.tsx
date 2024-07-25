@@ -6,7 +6,7 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ScheduleRecord } from "../interfaces/ScheduleInterfaces.ts";
 
 interface Props {
@@ -30,13 +30,17 @@ const style = {
   gap: 2,
 };
 export const PostScheduleModal = ({ isOpen, setOpenState, data }: Props) => {
+  const [scheduleName, setScheduleName] = useState<string>('');
+  const [scheduleDescription, setScheduleDescription] = useState<string>('');
   return (
     <>
       <Modal sx={ style } open={ isOpen } onClose={ () => setOpenState(false) }>
         <Container sx={ { display: 'flex', flexDirection: 'column' } }>
           <Typography textAlign={ 'center' }>Name your task list before
             saving:</Typography>
-          <TextField fullWidth sx={ {
+          <TextField value={ scheduleName }
+                     onChange={ (e) => setScheduleName(e.target.value) }
+                     fullWidth sx={ {
             input: {
               color: 'primary.light',
               textAlign: 'center'
@@ -46,12 +50,16 @@ export const PostScheduleModal = ({ isOpen, setOpenState, data }: Props) => {
           <Typography textAlign={ 'center' }>(Optional*) Give a description to
             your task
             set:</Typography>
-          <TextField rows={ 5 } multiline
+          <TextField value={ scheduleDescription }
+                     onChange={ (e) => setScheduleDescription(e.target.value) }
+                     rows={ 5 } multiline
                      inputProps={ { style: { color: '#bc9ffe' } } }
                      fullWidth/>
           <br/>
           <Box display={ 'flex' }>
-            <Button onClick={ () => console.log(data, 'is saved') }>Save task
+            <Button onClick={ () => console.log(
+              { scheduleName, scheduleDescription, data }, 'is saved') }>Save
+              task
               set</Button>
             <Button onClick={ () => console.log(data, 'is published') }>Save
               task set and publish</Button>

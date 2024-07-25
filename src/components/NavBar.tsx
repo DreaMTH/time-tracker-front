@@ -4,8 +4,8 @@ import {
   Button,
   IconButton,
   Toolbar,
-  Typography
 } from "@mui/material";
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu'
 import LoginOutlinedIcon from '@mui/icons-material/LoginOutlined';
 import { useState } from "react";
@@ -31,8 +31,25 @@ export const NavBar = () => {
                         onClick={ () => setLogged(!isLogged) }>
               <MenuIcon/>
             </IconButton>
-            <Typography variant={ 'h4' }
-                        sx={ { flexGrow: 1 } }>...</Typography>
+            <Box sx={ { display: 'flex', flexGrow: 1, gap: 2 } }>
+              <Link to={ '/' }>
+                <Button color={ 'primary' }
+                        disabled={ location.pathname === '/' }
+                        variant={ 'contained' }>Home</Button>
+              </Link>
+              <Link to={ '/schedules/mine' }>
+                <Button color={ 'primary' }
+                        disabled={ location.pathname === '/schedules/mine' }
+                        variant={ 'contained' }>My
+                  schedules</Button>
+              </Link>
+              <Link to={ '/schedules/new' }>
+                <Button color={ 'primary' }
+                        disabled={ location.pathname === '/schedules/new' }
+                        variant={ 'contained' }>New
+                  Schedule</Button>
+              </Link>
+            </Box>
             { !isLogged &&
                 <Box sx={ { gap: 2 } } display={ 'flex' }>
                     <Button size={ 'medium' } variant={ 'contained' }
